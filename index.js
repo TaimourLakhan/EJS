@@ -37,10 +37,21 @@ app.get("/rolldice",(req,res)=>{
 // now activity for instagram 
 
 app.get("/ig/:username",(req,res)=>{
+    const instaData=require("./data.json")
     let{username}=req.params;
-    let followers=['bilal','hammad','sham']
-    res.render("instagram.ejs",{username,followers});
+    
+    let data=instaData[username];
+    // console.log(data);
+    // console.log(data);
+    if(data){
+        res.render("instagram.ejs",{data});
+    }else{
+        res.render("err.ejs");
+    }
+    
+
 })
+
 
 
 
